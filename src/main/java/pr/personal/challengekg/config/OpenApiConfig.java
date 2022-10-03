@@ -5,6 +5,8 @@
  */
 package pr.personal.challengekg.config;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -14,7 +16,6 @@ import io.swagger.v3.oas.models.security.OAuthFlow;
 import io.swagger.v3.oas.models.security.OAuthFlows;
 import io.swagger.v3.oas.models.security.Scopes;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 
 import java.util.Arrays;
 
@@ -26,23 +27,17 @@ import org.springframework.context.annotation.Configuration;
  * @author PAULRCAMDELL
  */
 @Configuration
+@SecurityScheme(
+  name = "Bearer Authentication",
+  type = SecuritySchemeType.HTTP,
+  bearerFormat = "JWT",
+  scheme = "bearer"
+)
 public class OpenApiConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .components(new Components()
-                .addSecuritySchemes("spring_oauth", new SecurityScheme()
-                        .type(SecurityScheme.Type.OAUTH2)
-                        .description("Oauth2 flow")
-                        .flows(new OAuthFlows()
-                                .clientCredentials(new OAuthFlow()
-                                        .tokenUrl("http://localhost:8080" + "/oauth/token")
-                                        )))
-        )
-            .security(Arrays.asList(
-                new SecurityRequirement().addList("spring_oauth")))
-                .info(new Info()
+        return new OpenAPI().info(new Info()
                         .title("Challenge Kruger Corp Application API")
                         .description("Reto de Kruger Corp desarrollando una API.")
                         .termsOfService("terms")

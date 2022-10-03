@@ -18,6 +18,7 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -38,16 +39,16 @@ public class Empleado implements Serializable {
     @Size(min = 0, max = 10)
     @JsonProperty(value = "cedula", required = true, index = 10)
     @Schema(description = "Cédula del empleado",
-            example = "0704678788", required = true)
+            example = "1704678788", required = true)
 
     private Integer cedula;
-
+    @Pattern(regexp = "^[a-zA-Z0-9.\\-\\/+=@_ ]*$")
     @JsonProperty(value = "nombres", required = true, index = 20)
     @NotBlank
     @Schema(description = "Nombre del empleado",
             example = "Wilson Paul", required = true)
     private String nombres;
-
+    @Pattern(regexp = "^[a-zA-Z0-9.\\-\\/+=@_ ]*$")
     @JsonProperty(value = "apellidos", required = true, index = 30)
     @NotBlank
     @Schema(description = "Apellidos del empleado",
@@ -81,5 +82,23 @@ public class Empleado implements Serializable {
     @Schema(description = "Estado de vacunación de empleado",
             example = "true", required = true)
     private boolean vacunado;
+    
+     @JsonProperty(value = "tipo_vacuna", required = true, index = 90)
+    @Schema(description = "Tipo de vacuna aplicada",
+            example = "Pfizer", required = true)
+    private String tipo_vacuna;
+
+    
+    @JsonProperty(value = "fecha_vacunacion", required = true, index = 100)
+    @Schema(description = "Fecha de vacunación del empleado en formato yyyy-mm-dd",
+            example = "2020-04-16", required = true)
+    private Date fecha_vacunacion;
+    
+    
+    @JsonProperty(value = "num_dosis", required = true, index = 110)
+    @Schema(description = "Número de dosis de vacuna",
+            example = "2", required = true)
+    private Integer num_dosis;
+    
 
 }
