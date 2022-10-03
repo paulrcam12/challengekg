@@ -22,17 +22,17 @@ public interface EmpleadoRepository extends CrudRepository<Empleado, Integer>{
     
     
    
-   @Query (value= "SELECT * FROM public.empleados WHERE vacunado =true",
+   @Query (value= "SELECT * FROM public.empleados WHERE vacunado =?1",
    nativeQuery = true)
-   Collection<Empleado>  listVacunados();
+   Collection<Empleado>  listVacunadosByState(boolean state);
    
    
-   @Query (value= "SELECT * FROM public.empleados WHERE tipo_vacuna = 1?",
+   @Query (value= "SELECT * FROM public.empleados WHERE tipo_vacuna = ?1",
    nativeQuery = true)
    Collection<Empleado>  listByTipoVacuna(String tipo_vacuna);
    //List<Empleado> findBytipo_vacuna(String tipo_vacuna);
    
-   @Query (value= "SELECT * FROM public.empleados WHERE fecha_vacunacion BETWEEN 1? AND 2?",
+   @Query (value= "SELECT * FROM public.empleados WHERE fecha_vacunacion BETWEEN ?1 AND ?2",
    nativeQuery = true)
    Collection<Empleado> findByDatesVacunacion(Date since, Date to);
     

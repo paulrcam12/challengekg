@@ -77,38 +77,32 @@ public interface AdminAPI {
     public Collection<Empleado> findEmpleados();
 
 
-    @Operation(summary = "Obtener empleados vacunados", description = "Enlistar todos los empleados que se han vacunado", tags = {"admin"})
-    @GetMapping("/")
-    @RequestMapping( method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public Collection<Empleado> listVacunados();
-
     
-    /*
-    
-    @Operation(summary = "Obtener empleados por tipo de vacuna", description = "Enlistar empleados por tipo de vacuna", tags = {"admin"})
-    @RequestMapping(value = "/{tipo}", produces = {"application/json", "application/vnd.api+json"}, method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public Collection<Empleado> listByTipoVacuna(
-            @Parameter(description = "Tipo de vacuna", required = true)
-            @PathVariable String tipo);
-
-    
-    */
      @Operation(summary = "Obtener empleados por tipo de vacuna", description = "Enlistar empleados por tipo de vacuna", tags = {"admin"})
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Operación correcta", content = @Content(schema = @Schema(implementation = Empleado.class))),
-        @ApiResponse(responseCode = "400", description = "Cédula inválida", content = @Content),
+        @ApiResponse(responseCode = "400", description = "valor inválido", content = @Content),
         @ApiResponse(responseCode = "404", description = "Empleado no encontrado", content = @Content)})
     @RequestMapping(value = "/vacuna/{tipo}", produces = {"application/json", "application/vnd.api+json"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Empleado> findEmpleadosByVacuna(
+    public Collection<Empleado> findEmpleadosByVacuna(
             @Parameter(description = "Tipo de Vacuna", required = true)
             @PathVariable String tipo)
             throws Exception;
 
   
-    
+      @Operation(summary = "Obtener empleados por estado de vacunación", description = "Enlistar empleados por estado de vacunación", tags = {"admin"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Operación correcta", content = @Content(schema = @Schema(implementation = Empleado.class))),
+        @ApiResponse(responseCode = "400", description = "estado inválido", content = @Content),
+        @ApiResponse(responseCode = "404", description = "Empleado no encontrado", content = @Content)})
+    @RequestMapping(value = "/estado/{state}", produces = {"application/json", "application/vnd.api+json"}, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<Empleado> findEmpleadosByState(
+            @Parameter(description = "Estado de Vacunación", required = true)
+            @PathVariable boolean state)
+            throws Exception;
+
     
     
     

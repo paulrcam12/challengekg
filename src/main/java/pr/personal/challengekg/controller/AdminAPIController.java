@@ -148,16 +148,18 @@ public class AdminAPIController implements AdminAPI{
         return repository.findByDatesVacunacion(since, to);
     }
 
+
     @Override
-    public Collection<Empleado> listVacunados() {
-      return repository.listVacunados();
+    public Collection<Empleado>  findEmpleadosByVacuna(String tipo) throws Exception {
+           return repository.listByTipoVacuna(tipo);
     }
 
     @Override
-    public ResponseEntity<Empleado> findEmpleadosByVacuna(String tipo) throws Exception {
-           return (ResponseEntity<Empleado>) repository.listByTipoVacuna(tipo);
+    public Collection<Empleado> findEmpleadosByState(boolean state) throws Exception {
+        return repository.listVacunadosByState(state);
     }
 
+    
 
     
 }
