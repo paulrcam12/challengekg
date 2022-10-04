@@ -31,6 +31,20 @@ Se requiere una base de datos en Postgresql con las siguientes tablas:
 
 ![alt text](https://github.com/paulrcam12/challengekg/blob/main/git1.png?raw=true)
 
+En la tabla "roles" se necesitan ingresar los tres roles que usaremos en la aplicación
+```sh
+INSERT INTO public.roles (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO public.roles (id, name) VALUES (2, 'ROLE_MODERATOR');
+INSERT INTO public.roles (id, name) VALUES (3, 'ROLE_ADMIN');
+```
+
+Para facilitar el registro del usuario administrador y encriptar la contraseña se ha desarrollado una función para crear dicho usuario. Esto solo por motivos de demostración, en un ambiente de producción la creación se la hace desde una ventana específica para eso.
+
+En fin, creamos el usuario con el rol "ADMIN":
+
+![alt text](https://github.com/paulrcam12/challengekg/blob/main/git6.png?raw=true)
+
+
 Para iniciar la aplicación se necesita instalar Java 11 y Spring Boot 2.7.4.
 
 
@@ -65,13 +79,7 @@ Lo primero que tenemos que hacer es dirigirnos a la sección de Auth-Controller 
 
 ![alt text](https://github.com/paulrcam12/challengekg/blob/main/git2.png?raw=true)
 
-Usamos las credenciales: 
-```sh
-{
-  "username": "admin",
-  "password": "12345678"
-}
-```
+Usamos las credenciales que registramos con el rol "ADMIN".
 
 Luego nos retornará un Token tipo Bearer como response y lo usaremos para autenticarnos en el botón "Authorize".
 
@@ -95,6 +103,16 @@ Logeados como empleados podemos actualizar nuestros datos con la siguiente funci
 Y para finalizar podemos usar algunos filtros predeterminados que solo se tiene acceso si nos registramos como administradores.
 
 ![alt text](https://github.com/paulrcam12/challengekg/blob/main/git5.png?raw=true)
+
+
+
+
+
+
+
+
+
+
 
 
 
