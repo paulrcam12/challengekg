@@ -25,11 +25,13 @@ Recursos usados en el proyecto
 - Spring Data JPA
 
 
-## Installation
+## Instalación y funcionamiento
 
-Se requiere una base de datos en Postgresql con las siguientes tablas:
+Se requiere una base de datos con nombre "testdb" en Postgresql con las siguientes tablas:
 
 ![alt text](https://github.com/paulrcam12/challengekg/blob/main/git1.png?raw=true)
+
+Nota: También está disponible el modelo de datos en el repositorio con el nombre: modelo_datos.pgerd y cuando se ejecute la aplicación por primera vez se crearán los "triggers" que hace que se llene sola la tabla "user_roles".
 
 En la tabla "roles" se necesitan ingresar los tres roles que usaremos en la aplicación
 ```sh
@@ -71,7 +73,7 @@ Después de eso inicie el proyecto con el siguiente comando:
 mvn spring-boot:run
 ```
 
-Si todo se incició exitosamente podemos dirigirnos hasta la página:
+Si todo se inició exitosamente podemos dirigirnos hasta la página:
 
 http://localhost:8080/swagger-ui/index.html#/
 
