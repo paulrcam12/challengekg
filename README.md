@@ -1,7 +1,7 @@
 # Inventario de vacunación de empleados
 
 
-Kruger Corporation requiere una aplicación para llevar un registro del inventario del estado de
+Una compañía requiere una aplicación para llevar un registro del inventario del estado de
 vacunación de los empleados.
 La aplicación contará con 2 roles: Administrador y Empleado.
 
